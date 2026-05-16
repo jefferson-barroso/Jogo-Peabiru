@@ -171,14 +171,21 @@ canvas {
     <button class="pxl-btn" onclick="restartGame()">↺ TENTAR NOVAMENTE</button>
   </div>
 
-  <div id="s-win" style="display:none">
-    <div class="pxl-title" style="color:#ffee44">✦ FASE 1 COMPLETA! ✦</div>
-    <div style="color:#aaffaa;font-size:13px;margin:12px 0;line-height:2">
-      Pedro atravessou a Floresta de Peabiru!<br>A Montanha de Prata está mais próxima...
-    </div>
-    <div id="win-score" style="color:#f0c040;font-size:16px;margin-bottom:16px"></div>
-    <button class="pxl-btn" onclick="restartGame()">↺ JOGAR NOVAMENTE</button>
+<div id="s-win" style="display:none">
+  <div class="pxl-title" style="color:#ffee44">
+    ✦ FASE 1 CONCLUÍDA ✦
   </div>
+
+  <div style="margin-top:25px">
+    <button class="pxl-btn" onclick="restartGame()">
+      ↺ JOGAR NOVAMENTE
+    </button>
+
+    <button class="pxl-btn" onclick="goToNextPhase()">
+      ▶ IR PARA A PRÓXIMA FASE
+    </button>
+  </div>
+</div>
 
 </div><!-- /overlay -->
 </div><!-- /wrap -->
@@ -620,7 +627,7 @@ function drawCanvasHUD(){
   ctx.fillStyle='#ffdd00';ctx.fillRect(mx-4,H-23,8,18);
   ctx.fillStyle='#fff';ctx.font='bold 9px Courier New';
   ctx.textAlign='left';ctx.fillText('Início',12,H-7);
-  ctx.textAlign='right';ctx.fillText('Fim da fase',W-10,H-7);
+  ctx.textAlign='right';ctx.fillText('Rio Peabiru',W-10,H-7);
 }
 
 // ── Physics ────────────────────────────────────────────────────
@@ -874,8 +881,13 @@ function startGame(){
   showMsg('⚔ Que comece a jornada! Chegue à bandeira!',3000);
 }
 
+function hideOverlayScreens(){
+  ['s-over','s-win','s-menu','s-trailer','s-tutorial'].forEach(id=>document.getElementById(id).style.display='none');
+}
+
 function doGameOver(){
   running=false;bgmStop();
+  hideOverlayScreens();
   document.getElementById('overlay').classList.remove('hidden');
   document.getElementById('s-over').style.display='block';
   document.getElementById('go-score').textContent='Pontuação: '+score;
@@ -883,9 +895,9 @@ function doGameOver(){
 
 function doWin(){
   running=false;bgmStop();
+  hideOverlayScreens();
   document.getElementById('overlay').classList.remove('hidden');
   document.getElementById('s-win').style.display='block';
-  document.getElementById('win-score').textContent='Pontuação Final: '+score;
 }
 
 function restartGame(){
@@ -924,6 +936,10 @@ async function boot(){
   ctx.fillText('Pressione qualquer tecla para começar',W/2,H/2+55);
 }
 window.addEventListener('load',boot);
+
+function goToNextPhase(){
+  window.location.href = "fase2.html";
+}
 </script>
 <!-- INLINE ASSET BUNDLE -->
 <script>
