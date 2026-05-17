@@ -157,9 +157,13 @@ canvas {
     <div class="ctrl-row"><span class="ctrl-key">F</span><span class="ctrl-lbl">Atacar com a arma atual</span></div>
     <div class="ctrl-row"><span class="ctrl-key">G</span><span class="ctrl-lbl">Interagir com indígenas</span></div>
     <div style="color:#88cc88;font-size:11px;margin:10px 0;line-height:1.9;text-align:center">
-      🍊 Frutas = +100 pts · ⚔ Matar inimigo = +50 pts<br>
-      ❤ A cada 1000 pts uma vida é restaurada · 🐍 Pule sobre inimigos ou pressione F<br>
-      🪵 Apenas troncos CAINDO causam dano — os do chão são decoração!
+      🍊 Frutas = +100 pts  
+      ⚔ Matar inimigo = +50 pts<br>
+      ❤ A cada 1000 pts uma vida é restaurada <br>
+      🐍 Pule sobre inimigos ou pressione F<br>
+      🪵 Apenas troncos CAINDO causam dano — os do chão são decoração!<br>
+
+      OBS: Os indígenas podem oferecer novas armas ou dar dano. Tudo é uma surpresa.
     </div>
     <button class="pxl-btn" onclick="startGame()">⚔ COMEÇAR FASE 1</button>
   </div>
@@ -306,12 +310,16 @@ function hudUpdate(){
   document.getElementById('hp-bar-fill').style.width=pct+'%';
   const hearts=document.getElementById('hp-hearts');
   hearts.innerHTML='';
-  for(let i=0;i<maxHp;i++){
-    const s=document.createElement('span');s.className='heart';
-    s.textContent=i<hp?'❤':'🖤';hearts.appendChild(s);
-  }
+for(let i=0;i<maxHp;i++){
+  const s=document.createElement('span');
+  s.className='heart';
+
+  s.textContent = i < hp ? '🤍' : '🖤';
+
+  hearts.appendChild(s);
+}
   document.getElementById('score-el').textContent='PONTOS: '+score;
-  const wn={sword:'⚔ ESPADA',boomerang:'🪃 BOOMERANG',whip:'🩹 CHICOTE'};
+  const wn={sword:' ESPADA',boomerang:' BOOMERANG',whip:' CHICOTE'};
   document.getElementById('weapon-el').textContent=wn[weapon]||weapon;
 }
 
@@ -388,7 +396,7 @@ function drawFlag(){
   ctx.fill();
   ctx.fillStyle='#cc0000';ctx.fillRect(dx+9,GROUND-86,7,12);
   ctx.fillStyle='#fff';ctx.font='bold 9px Courier New';ctx.textAlign='center';
-  ctx.fillText('PROX. FASE',dx+2,GROUND-97);
+  ctx.fillText('RIO PEABIRU',dx+2,GROUND-97);
 }
 
 // ── Player Drawing ─────────────────────────────────────────────
