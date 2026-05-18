@@ -112,6 +112,7 @@ canvas{
     </div>
     <div id="win-score" style="color:#ffd666;font-size:16px;margin-bottom:16px"></div>
     <button class="pxl-btn" onclick="restartGame()">JOGAR NOVAMENTE</button>
+    <button class="pxl-btn" onclick="goToFinalPhase()">IR PARA A FASE FINAL</button>
   </div>
 </div>
 </div>
@@ -354,6 +355,7 @@ function doGameOver(){running=false;bgmStop();document.getElementById("overlay")
 function doWin(){running=false;bgmStop();document.getElementById("overlay").classList.remove("hidden");hideScreens();document.getElementById("s-win").style.display="block";document.getElementById("win-score").textContent="Pontuacao Final: "+score}
 function hideScreens(){["s-menu","s-intro","s-tutorial","s-over","s-win"].forEach(id=>document.getElementById(id).style.display="none")}
 function restartGame(){hideScreens();document.getElementById("s-menu").style.display="block";document.getElementById("overlay").classList.remove("hidden");running=false;bgmStop();keys={};flagReached=false}
+function goToFinalPhase(){window.location.href="fase3.html"}
 window.addEventListener("keydown",e=>{keys[e.code]=true;if(["Space","ArrowUp","ArrowDown","ArrowLeft","ArrowRight"].includes(e.code))e.preventDefault();aInit()});
 window.addEventListener("keyup",e=>keys[e.code]=false);
 async function boot(){
