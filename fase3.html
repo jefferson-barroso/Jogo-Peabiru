@@ -94,7 +94,7 @@ let platforms=[],fruits=[],natives=[],rocks=[],projs=[],bossShots=[],particles=[
 const P={x:105,y:2160,w:48,h:64,vx:0,vy:0,onGround:false,dir:1,state:"idle"};
 const boss={x:1325,y:322,w:130,h:150,hp:2000,maxHp:2000,alive:true,cd:70,anim:0,flash:0,dir:-1,speed:1.15,castT:0};
 function goToBegin(){
-  window.location.href = "fase1.html";
+  window.location.href = "index.html";
 }
 
 function loadImg(key,src){return new Promise(r=>{const i=new Image();i.onload=()=>{IMG[key]=i;r()};i.onerror=r;i.src=src})}
