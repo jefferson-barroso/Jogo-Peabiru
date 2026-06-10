@@ -1,0 +1,110 @@
+/* index: estilos de tela, HUD, menus e canvas do jogo. */
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background:#020a02;
+  display:flex; justify-content:center; align-items:center;
+  height:100vh; overflow:hidden;
+  font-family:'Courier New',monospace;
+}
+#wrap { position:relative; width:800px; height:450px; }
+canvas {
+  display:block;
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+  border:3px solid #1a3a1a;
+  box-shadow:0 0 50px #0a2a0a88, 0 0 100px #00000099;
+}
+
+
+#overlay {
+  position:absolute; inset:0;
+  background:rgba(1,8,1,.93);
+  display:flex; flex-direction:column; justify-content:center; align-items:center;
+  z-index:200;
+  text-align: center;
+}
+#overlay.hidden { display:none; }
+
+.pxl-title {
+  font-size:40px; font-weight:bold; letter-spacing:7px; color:#f0c040;
+  text-shadow:3px 3px 0 #7a3a00,-2px -2px 0 #7a3a00,0 0 24px #f0c04066;
+  margin-bottom:6px;
+}
+.pxl-sub { font-size:12px; color:#a07820; letter-spacing:4px; margin-bottom:26px;  text-align: center; }
+.pxl-btn {
+  background:#1e4a18; border:2px solid #4aaa2a; color:#ccffaa;
+  font-family:'Courier New',monospace; font-size:14px; letter-spacing:2px;
+  padding:10px 28px; cursor:pointer; margin:5px;
+  transition:background .1s,transform .08s;
+}
+.pxl-btn:hover { background:#2a6a22; transform:scale(1.04); }
+.trailer-txt {
+  font-size:13px; color:#d8c070; line-height:2.1;
+  max-width:580px; text-align:center; white-space:pre-line;
+}
+.ctrl-row { display:flex; align-items:center; gap:14px; margin:4px 0; }
+.ctrl-key {
+  background:#223388; border:2px solid #6677cc; color:#fff;
+  font-size:12px; padding:3px 12px; min-width:170px; text-align:center; letter-spacing:1px;
+}
+.ctrl-lbl { color:#aaccff; font-size:12px; }
+
+
+#hud {
+  position:absolute; top:0; left:0; width:800px;
+  pointer-events:none; z-index:100;
+}
+
+
+#hud-hp {
+  position:absolute; top:10px; left:10px;
+  display:flex; flex-direction:column; gap:2px;
+}
+#hp-lbl { color:#ff8080; font-size:9px; letter-spacing:2px; text-shadow:1px 1px 0 #000; }
+
+#hp-bar-bg {
+  width:148px; height:16px;
+  background:#1a0000; border:2px solid #880000;
+  position:relative; overflow:hidden;
+}
+#hp-bar-fill {
+  height:100%; width:100%;
+  background:linear-gradient(90deg,#cc0000 0%,#ff5555 60%,#ffaaaa 100%);
+  transition:width .25s;
+  position:relative;
+}
+
+#hp-bar-fill::after {
+  content:''; position:absolute; top:0; left:0; right:0; height:5px;
+  background:rgba(255,255,255,.18);
+}
+
+#hp-bar-bg::after {
+  content:''; position:absolute; inset:0;
+  background:repeating-linear-gradient(90deg,transparent,transparent 9px,rgba(0,0,0,.25) 9px,rgba(0,0,0,.25) 10px);
+  pointer-events:none;
+}
+#hp-hearts { display:flex; gap:2px; margin-top:2px; }
+.heart { font-size:15px; line-height:1; filter:drop-shadow(1px 1px 0 #000); }
+
+
+#hud-right {
+  position:absolute; top:10px; right:10px;
+  display:flex; flex-direction:column; align-items:flex-end; gap:3px;
+}
+.hud-pill {
+  font-size:12px; letter-spacing:1px;
+  background:rgba(0,0,0,.72); padding:3px 10px;
+}
+#score-el  { color:#f0c040; border:1px solid #7a6010; }
+#weapon-el { color:#88ffcc; border:1px solid #205040; }
+#phase-el  { color:#ffffff; border:1px solid #444;    font-size:10px; }
+
+
+#msg {
+  position:absolute; top:60px; left:50%; transform:translateX(-50%);
+  color:#ffe080; font-size:13px; background:rgba(0,0,0,.85);
+  border:2px solid #c09020; padding:5px 18px; letter-spacing:1px;
+  pointer-events:none; z-index:150; display:none; white-space:nowrap;
+  text-shadow:1px 1px 0 #000;
+}
